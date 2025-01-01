@@ -67,7 +67,7 @@ app.post('/user/log' ,async (req , resp)=>{
   
 })
 
-app.post('/user/subscribe' , verifyToken , async (req , resp) =>{
+app.post('/user/subscribe' , async (req , resp) =>{
   let data = await userSubscribe(req.body)
   let result = await data.save()
   if(result){
@@ -79,7 +79,7 @@ app.post('/user/subscribe' , verifyToken , async (req , resp) =>{
   }
 })
 
-app.get('user/detail/:id' ,verifyToken, async (req , resp)=>{
+app.get('/user/detail/:id' , async (req , resp)=>{
     let data = await userData.find({_id:req.params.id})
     if(data){
         resp.send(data)
@@ -90,7 +90,7 @@ app.get('user/detail/:id' ,verifyToken, async (req , resp)=>{
     }
 })
 
-app.put('user/update/:id' ,verifyToken, async (req , resp)=>{
+app.put('/user/update/:id' , async (req , resp)=>{
     let data = await userData.updateOne({_id:req.params.id},{$set:req.body})
     if(data){
         resp.send(data)
@@ -101,7 +101,7 @@ app.put('user/update/:id' ,verifyToken, async (req , resp)=>{
     }
 })
 
-app.post('user/query' ,verifyToken, async (req , resp) =>{
+app.post('/user/query' , async (req , resp) =>{
     let data = await userQuery(req.body)
     let result = await data.save()
     if(result){
